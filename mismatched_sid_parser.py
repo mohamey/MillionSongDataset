@@ -12,7 +12,7 @@ def parse_song_id(line):
     tuple_start = line.index("<") + 1
     tuple_end = line.index(">")
     track_song_tuple = line[tuple_start : tuple_end]
-    _, song_id = track_song_tuple.split(" ")
+    song_id, _ = track_song_tuple.split(" ")
     return song_id
 
 untrusted_song_ids = set()
