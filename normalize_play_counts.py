@@ -18,17 +18,23 @@ users_dict = {}
 with open(pickle_path, 'rb') as input_file:
     users_dict = load(input_file)
 
-normalized_dict = {}
 # Loop through each user, get max and min
+print("Normalizing Data")
+keys_to_delete = []
 for user, tuples in users_dict.items():
-    print("Normalizing Data")
     play_counts = [play_count for (_, play_count) in tuples]
     min_val = min(play_counts)
     max_val = max(play_counts)
 
-    normalized_dict[user] = [(song_id, normalize_val(play_count, min_val, max_val)) for (song_id, play_count) in tuples]
+    if min_val != max_val:
+        users_dict[user] = [(song_id, normalize_val(play_count, min_val, max_val)) for (song_id, play_count) in tuples]
+    else:
+        keys_to_delete.append(user)
 
-users_dict = {}
+for key in keys_to_delete:
+    users_dict.pop(key, None)
+
 output_path = "processed_data/normalized_user_track_dict_pickle"
 with open(output_path, 'wb') as output_file:
-    dump(normalized_dict, output_file)
+    dump(users_dict, output_file)
+    print("There are {} users with useful data".format(len(users_dict)))
