@@ -8,7 +8,10 @@ if len(argv) < 2:
     exit()
 
 def normalize_val(val, min_val, max_val):
-    return (val - min_val) / (max_val - min_val)
+    if max_val - min_val == 0:
+        return 0.1
+    else:
+        return (val - min_val) / (max_val - min_val)
 
 pickle_path = argv[1]
 users_dict = {}
