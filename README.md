@@ -7,3 +7,6 @@
 * Filtered Train Triplets: 45795100
 * 5.33% of entries Removed (2578486)
 
+## User Data
+__After__ build user track dict, there are 1,019,318 users.
+__After__ Normalizing data, there are 978,301 users. (-41,017 / 4%)
