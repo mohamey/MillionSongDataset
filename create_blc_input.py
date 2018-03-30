@@ -5,6 +5,7 @@ from sys import argv, exit
 from pickle import load
 
 SCALE = 10
+ONE_QUOTA = 5
 
 if len(argv) < 2:
     print("Please provide path to normalized data dict")
@@ -29,10 +30,14 @@ with open('blc_input/users.txt', 'w') as users, open('blc_input/songs.txt', 'w')
     print("Iterating through users")
     count = 0
     for user in sorted_users:
+        remaining_ones = ONE_QUOTA
         for (song, rating) in user_track_tuples[user]:
-            users.write("{}\n".format(str(user)))
-            songs.write("{}\n".format(str(song)))
-            ratings.write("{}\n".format(str(scale_rating(rating))))
+            rating = scale_rating(rating)
+            if (rating == 1 and remaining_ones > 0) or rating != 1:
+                remaining_ones = max(0, remaining_ones - 1)
+                users.write("{}\n".format(str(user)))
+                songs.write("{}\n".format(str(song)))
+                ratings.write("{}\n".format(str(rating)))
 
         count += 1
         if count == num_to_take:
