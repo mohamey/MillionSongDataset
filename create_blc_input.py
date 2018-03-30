@@ -34,10 +34,12 @@ with open('blc_input/users.txt', 'w') as users, open('blc_input/songs.txt', 'w')
         for (song, rating) in user_track_tuples[user]:
             rating = scale_rating(rating)
             if (rating == 1 and remaining_ones > 0) or rating != 1:
-                remaining_ones = max(0, remaining_ones - 1)
                 users.write("{}\n".format(str(user)))
                 songs.write("{}\n".format(str(song)))
                 ratings.write("{}\n".format(str(rating)))
+
+                if rating == 1:
+                    remaining_ones = max(0, remaining_ones - 1)
 
         count += 1
         if count == num_to_take:
