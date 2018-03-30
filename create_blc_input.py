@@ -1,9 +1,10 @@
 #!/usr/bin/python3
 
+from math import floor
 from sys import argv, exit
 from pickle import load
 
-SCALE = 5
+SCALE = 10
 
 if len(argv) < 2:
     print("Please provide path to normalized data dict")
@@ -22,7 +23,7 @@ if argv[2]: num_to_take = int(argv[2])
 sorted_users = sorted(user_track_tuples, key=lambda k: len(user_track_tuples[k]), reverse=True)
 
 def scale_rating(rating):
-    return 1 + (rating * (SCALE - 1))
+    return floor(1 + (rating * (SCALE - 1)))
 
 with open('blc_input/users.txt', 'w') as users, open('blc_input/songs.txt', 'w') as songs, open('blc_input/ratings.txt', 'w') as ratings:
     print("Iterating through users")
