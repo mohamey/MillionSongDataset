@@ -1,9 +1,11 @@
 #!/usr/bin/python3
 
+from math import floor
 from sys import argv, exit
 from pickle import load
 
-SCALE = 5
+SCALE = 10
+ONE_QUOTA = 5
 
 if len(argv) < 2:
     print("Please provide path to normalized data dict")
@@ -22,16 +24,22 @@ if argv[2]: num_to_take = int(argv[2])
 sorted_users = sorted(user_track_tuples, key=lambda k: len(user_track_tuples[k]), reverse=True)
 
 def scale_rating(rating):
-    return 1 + (rating * (SCALE - 1))
+    return floor(1 + (rating * (SCALE - 1)))
 
 with open('blc_input/users.txt', 'w') as users, open('blc_input/songs.txt', 'w') as songs, open('blc_input/ratings.txt', 'w') as ratings:
     print("Iterating through users")
     count = 0
     for user in sorted_users:
+        remaining_ones = ONE_QUOTA
         for (song, rating) in user_track_tuples[user]:
-            users.write("{}\n".format(str(user)))
-            songs.write("{}\n".format(str(song)))
-            ratings.write("{}\n".format(str(scale_rating(rating))))
+            rating = scale_rating(rating)
+            if (rating == 1 and remaining_ones > 0) or rating != 1:
+                users.write("{}\n".format(str(user)))
+                songs.write("{}\n".format(str(song)))
+                ratings.write("{}\n".format(str(rating)))
+
+                if rating == 1:
+                    remaining_ones = max(0, remaining_ones - 1)
 
         count += 1
         if count == num_to_take:

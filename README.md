@@ -10,3 +10,6 @@
 ## User Data
 __After__ build user track dict, there are 1,019,318 users.
 __After__ Normalizing data, there are 978,301 users. (-41,017 / 4%)
+
+## Creating BLC input
+Originally outputs 1,576,749 ratings, 85.8% of which are 1. I've put a quota for the number of ones in place, so each user can have a max of 5 '1' ratings. With this quota, number of ratings dropped to 235,585 ( -85% )
