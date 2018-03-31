@@ -15,7 +15,7 @@ user_to_num_dict = {}
 
 file_path = argv[1]
 nym_users_dict = {}
-with open(file_path, 'r') as P, open("processed_data/processed_P", 'w') as processed_P:
+with open(file_path, 'r') as P:
     print("Processing P")
     for line in P:
         user, nym = map(int, line.split(","))
