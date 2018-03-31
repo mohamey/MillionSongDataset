@@ -20,47 +20,39 @@ with open(pickle_path, 'rb') as input_file:
 # Loop through each user, get max and min
 print("Normalizing Data")
 keys_to_delete = []
+total_play_count_dict = {}
 for user, tuples in users_dict.items():
-    remaining_ones = ONE_QUOTA
-    total_play_count = sum([play_count for (_, play_count) in tuples])
-    # Represent play counts as a fraction of total play count
+    sorted_tuples = sorted(tuples, key=lambda t: t[1], reverse=True)[:101]
+    total_play_count = sum([play_count for _, play_count in sorted_tuples])
+    users_dict[user] = [(song_id, play_count / total_play_count) for song_id, play_count in sorted_tuples]
+    total_play_count_dict[user] = total_play_count
+    # remaining_ones = ONE_QUOTA
+    # total_play_count = sum([play_count for (_, play_count) in tuples])
 
-    # min_val = min(play_counts)
-    # max_val = max(play_counts)
-
-    if len(tuples) != 1 and total_play_count != 1:
-        new_user_tuple_list = []
-        for song_id, play_count in tuples:
-            if (play_count == 1 and remaining_ones > 0) or play_count > 1:
-                new_user_tuple_list.append((song_id, (play_count / total_play_count)))
-
-                if play_count == 1:
-                    remaining_ones = max(0, remaining_ones - 1)
-
-        print(new_user_tuple_list)
-        users_dict[user] = new_user_tuple_list
-    # if min_val != max_val:
+    # if len(tuples) != 1 and total_play_count != 1:
     #     new_user_tuple_list = []
     #     for song_id, play_count in tuples:
-    #         normalized_rating = normalize_val(play_count, min_val, max_val)
+    #         if (play_count == 1 and remaining_ones > 0) or play_count > 1:
+    #             new_user_tuple_list.append((song_id, (play_count / total_play_count)))
 
-    #         if (normalized_rating == 0.0 and remaining_ones > 0) or normalized_rating != 0.0:
-    #             new_user_tuple_list.append((song_id, normalized_rating))
-
-    #             if normalized_rating == 0.0:
+    #             if play_count == 1:
     #                 remaining_ones = max(0, remaining_ones - 1)
+    #         else:
+    #             print("Rejected")
 
     #     users_dict[user] = new_user_tuple_list
+    # else:
+    #     keys_to_delete.append(user)
 
-
-        # users_dict[user] = [(song_id, normalize_val(play_count, min_val, max_val)) for (song_id, play_count) in tuples]
-    else:
-        keys_to_delete.append(user)
-
-for key in keys_to_delete:
-    users_dict.pop(key, None)
+# for key in keys_to_delete:
+#     users_dict.pop(key, None)
 
 output_path = "processed_data/normalized_user_track_dict_pickle"
 with open(output_path, 'wb') as output_file:
     dump(users_dict, output_file)
     print("There are {} users with useful data".format(len(users_dict)))
+
+output_path = "metadata/user_total_play_counts_pickle"
+with open(output_path, 'wb') as output_file:
+    dump(total_play_count_dict, output_file)
+    print("Dumped dict with total play counts")
