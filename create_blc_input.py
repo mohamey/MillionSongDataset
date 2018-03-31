@@ -4,7 +4,7 @@ from math import floor
 from sys import argv, exit
 from pickle import load
 
-SCALE = 10
+SCALE = 100
 ONE_QUOTA = 5
 
 if len(argv) < 2:
