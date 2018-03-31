@@ -22,22 +22,35 @@ print("Normalizing Data")
 keys_to_delete = []
 for user, tuples in users_dict.items():
     remaining_ones = ONE_QUOTA
-    play_counts = [play_count for (_, play_count) in tuples]
-    min_val = min(play_counts)
-    max_val = max(play_counts)
+    total_play_count = sum([play_count for (_, play_count) in tuples])
+    # Represent play counts as a fraction of total play count
 
-    if min_val != max_val:
+    # min_val = min(play_counts)
+    # max_val = max(play_counts)
+
+    if len(tuples) != 1 and total_play_count != 1:
         new_user_tuple_list = []
         for song_id, play_count in tuples:
-            normalized_rating = normalize_val(play_count, min_val, max_val)
+            if (play_count == 1 and remaining_ones > 0) or play_count > 1:
+                new_user_tuple_list.append((song_id, (play_count / total_play_count)))
 
-            if (normalized_rating == 0.0 and remaining_ones > 0) or normalized_rating != 0.0:
-                new_user_tuple_list.append((song_id, normalized_rating))
-
-                if normalized_rating == 0.0:
+                if play_count == 1:
                     remaining_ones = max(0, remaining_ones - 1)
 
+        print(new_user_tuple_list)
         users_dict[user] = new_user_tuple_list
+    # if min_val != max_val:
+    #     new_user_tuple_list = []
+    #     for song_id, play_count in tuples:
+    #         normalized_rating = normalize_val(play_count, min_val, max_val)
+
+    #         if (normalized_rating == 0.0 and remaining_ones > 0) or normalized_rating != 0.0:
+    #             new_user_tuple_list.append((song_id, normalized_rating))
+
+    #             if normalized_rating == 0.0:
+    #                 remaining_ones = max(0, remaining_ones - 1)
+
+    #     users_dict[user] = new_user_tuple_list
 
 
         # users_dict[user] = [(song_id, normalize_val(play_count, min_val, max_val)) for (song_id, play_count) in tuples]
