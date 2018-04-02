@@ -4,7 +4,7 @@ from math import floor
 from sys import argv, exit
 from pickle import load, dump
 
-SCALE = 100
+SCALE = 10
 ONE_QUOTA = 5
 
 if len(argv) < 2:
@@ -33,6 +33,7 @@ with open('blc_input/users.txt', 'w') as users, open('blc_input/songs.txt', 'w')
     print("Iterating through users")
     count = 0
     for user in sorted_users:
+        print(total_play_counts_dict[user])
         # remaining_ones = ONE_QUOTA
         for (song, rating) in user_track_tuples[user]:
             rating = scale_rating(rating)
