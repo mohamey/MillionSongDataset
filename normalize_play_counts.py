@@ -26,32 +26,20 @@ keys_to_delete = []
 total_play_count_dict = {}
 for user, tuples in users_dict.items():
     if len(tuples) >= 100:
-        sorted_tuples = sorted(tuples, key=lambda t: t[1], reverse=True)[:100]
-        play_count_list = [play_count for _, play_count in sorted_tuples]
-        total_play_count = sum(play_count_list)
-        max_play_count = max(play_count_list)
-        # users_dict[user] = [(song_id, play_count / total_play_count) for song_id, play_count in sorted_tuples]
-        users_dict[user] = [(song_id, normalize_val(play_count, 1, max_play_count)) for song_id, play_count in sorted_tuples]
-        total_play_count_dict[user] = total_play_count
+        sorted_tuples = sorted(tuples, key=lambda t: t[1], reverse=True)
+        # Remove all ones
+        sorted_tuples = [t for t in sorted_tuples if t[1] != 1]
+        if sorted_tuples:
+            play_count_list = [play_count for _, play_count in sorted_tuples]
+            total_play_count = sum(play_count_list)
+            max_play_count = max(play_count_list)
+            # users_dict[user] = [(song_id, play_count / total_play_count) for song_id, play_count in sorted_tuples]
+            users_dict[user] = [(song_id, normalize_val(play_count, 1, max_play_count)) for song_id, play_count in sorted_tuples]
+            total_play_count_dict[user] = total_play_count
+        else:
+            keys_to_delete.append(user)
     else:
         keys_to_delete.append(user)
-    # remaining_ones = ONE_QUOTA
-    # total_play_count = sum([play_count for (_, play_count) in tuples])
-
-    # if len(tuples) != 1 and total_play_count != 1:
-    #     new_user_tuple_list = []
-    #     for song_id, play_count in tuples:
-    #         if (play_count == 1 and remaining_ones > 0) or play_count > 1:
-    #             new_user_tuple_list.append((song_id, (play_count / total_play_count)))
-
-    #             if play_count == 1:
-    #                 remaining_ones = max(0, remaining_ones - 1)
-    #         else:
-    #             print("Rejected")
-
-    #     users_dict[user] = new_user_tuple_list
-    # else:
-    #     keys_to_delete.append(user)
 
 for key in keys_to_delete:
     users_dict.pop(key, None)
