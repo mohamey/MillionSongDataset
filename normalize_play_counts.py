@@ -10,7 +10,10 @@ if len(argv) < 2:
     exit()
 
 def normalize_val(val, min_val, max_val):
-    return (val - min_val) / (max_val - min_val)
+    if min_val == max_val:
+        return 0.0
+    else:
+        return (val - min_val) / (max_val - min_val)
 
 pickle_path = argv[1]
 users_dict = {}
@@ -20,27 +23,21 @@ with open(pickle_path, 'rb') as input_file:
 # Loop through each user, get max and min
 print("Normalizing Data")
 keys_to_delete = []
+total_play_count_dict = {}
 for user, tuples in users_dict.items():
-    remaining_ones = ONE_QUOTA
-    play_counts = [play_count for (_, play_count) in tuples]
-    min_val = min(play_counts)
-    max_val = max(play_counts)
-
-    if min_val != max_val:
-        new_user_tuple_list = []
-        for song_id, play_count in tuples:
-            normalized_rating = normalize_val(play_count, min_val, max_val)
-
-            if (normalized_rating == 0.0 and remaining_ones > 0) or normalized_rating != 0.0:
-                new_user_tuple_list.append((song_id, normalized_rating))
-
-                if normalized_rating == 0.0:
-                    remaining_ones = max(0, remaining_ones - 1)
-
-        users_dict[user] = new_user_tuple_list
-
-
-        # users_dict[user] = [(song_id, normalize_val(play_count, min_val, max_val)) for (song_id, play_count) in tuples]
+    if len(tuples) >= 100:
+        sorted_tuples = sorted(tuples, key=lambda t: t[1], reverse=True)
+        # Remove all ones
+        sorted_tuples = [t for t in sorted_tuples if t[1] != 1]
+        if sorted_tuples:
+            play_count_list = [play_count for _, play_count in sorted_tuples]
+            total_play_count = sum(play_count_list)
+            max_play_count = max(play_count_list)
+            # users_dict[user] = [(song_id, play_count / total_play_count) for song_id, play_count in sorted_tuples]
+            users_dict[user] = [(song_id, normalize_val(play_count, 1, max_play_count)) for song_id, play_count in sorted_tuples]
+            total_play_count_dict[user] = total_play_count
+        else:
+            keys_to_delete.append(user)
     else:
         keys_to_delete.append(user)
 
@@ -51,3 +48,8 @@ output_path = "processed_data/normalized_user_track_dict_pickle"
 with open(output_path, 'wb') as output_file:
     dump(users_dict, output_file)
     print("There are {} users with useful data".format(len(users_dict)))
+
+output_path = "metadata/user_total_play_counts_pickle"
+with open(output_path, 'wb') as output_file:
+    dump(total_play_count_dict, output_file)
+    print("Dumped dict with total play counts")
