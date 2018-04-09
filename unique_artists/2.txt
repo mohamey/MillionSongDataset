@@ -1,0 +1,41 @@
+Lena Philipsson,7
+Colleen,12
+Yo-Yo Ma,15
+Glen Campbell,17
+Cracker,21
+Dexys Midnight Runners,23
+Vanessa Williams,32
+The Stills,42
+Nathan Fake,49
+Trapt,53
+Soul Asylum,54
+Leif Ove Andsnes,60
+La Banda Del Capitan Canalla,63
+Second Hand Serenade,66
+Seine,67
+Audioslave,72
+Keyshia Cole / Jadakiss,78
+Julian Cope,79
+Penumbra,82
+Roberta Flack & Donny Hathaway,83
+Jim Breuer,88
+Mike Nero,98
+Horkyze Slyze,105
+MARC COHN,106
+Danny Elfman,111
+Will Young,112
+Young Dro,134
+Prozzak,138
+Mike Koglin,139
+F.R. David,144
+Richard Ashcroft,149
+Calle 13 Featuring Orishas,155
+Magazine,156
+Submission Hold,160
+Space Raiders,163
+Pearl Bailey,171
+Mylène Farmer,175
+C & C Music Factory,185
+Trivium,193
+Miranda Lambert,197
+Diana Krall,198

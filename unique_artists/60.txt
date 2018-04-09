@@ -1,0 +1,54 @@
+Soul Coughing,3
+The Knack,7
+Cassie,18
+Howard Jones,19
+Sergio Mendes,24
+Ladytron,25
+Bruce Springsteen,27
+Seventh Day Slumber,29
+Françoise Hardy,35
+Cristina Donà,49
+Young Gunz,55
+The Proclaimers,71
+Sir Neville Marriner/Academy of St Martin-in-the-Fields,72
+Generation X,73
+The Trashmen,76
+Panic! At The Disco,81
+Bosson,82
+Calle 13 Featuring La Mala Rodríguez,83
+Blue Man Group,93
+datA,95
+Bryan Ferry,97
+The Duckworth Lewis Method,100
+Backstreet Boys,101
+F.R. David,105
+Will Young,107
+Grizzly Bear,109
+Shaggy,111
+The Grascals,112
+A Hawk And A Hacksaw,122
+Modern English,124
+Sarah Masen,125
+Catupecu Machu,140
+The Beautiful South,144
+Beyonce & Shakira,147
+Robin Williams,148
+Jodeci,150
+Wohnout,151
+Labelle (featuring Patti Labelle),152
+Café Tacvba,155
+Milli Vanilli,157
+Submersed,165
+Charlie Peacock,169
+En Vogue,170
+Eskimo Joe,171
+Arch Enemy,175
+Slagsmalsklubben,177
+Plastic Bertrand,179
+Elena,180
+Ying Yang Twins ft. Wyclef Jean,183
+Stan Whitmire,186
+Helloween,191
+Babylon Circus,195
+Jedi Mind Tricks,197
+Harmony,198

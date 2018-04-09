@@ -1,0 +1,81 @@
+Faultline,1
+Blue Swede,2
+The Five Stairsteps,6
+Sex Pistols,10
+Eagles Of Death Metal,11
+Half Man Half Biscuit,12
+Jane's Addiction,13
+The Bloody Beetroots,15
+Maximo Park,19
+The Bloody Beetroots / The Cool Kids,24
+Bonobo Featuring Andreya Triana,26
+The Bloody Beetroots feat. Steve Aoki,30
+Bonobo feat.  Bajka,34
+The Bloody Beetroots / J. Davey,40
+Nazan Öncel,41
+The George Shearing Quintet with Nancy Wilson,42
+Bonobo,44
+Don Francisco,50
+Need New Body,53
+George Braith,54
+Charlelie Couture,55
+Otep,57
+Anastacia,61
+Alicia Keys featuring John Mayer,62
+Black Sabbath,63
+Jah Warrior,68
+Avenged Sevenfold,69
+Cassie,70
+Ashlee Simpson,74
+Scars On Broadway,76
+The Runaways,77
+Vitamin C,79
+Seine,81
+Naast,89
+Era,93
+LMFAO,95
+Rx Bandits,97
+Kiss,99
+Ann Lee,103
+Hansen Band,105
+Dakota Staton,106
+Shop Boyz / Lil Wayne / Chamillionaire,107
+Silverchair,108
+Wir Sind Helden,111
+Garbage,112
+Lordi,121
+Cristina Donà,123
+Bad Manners,124
+Arturo Sandoval,125
+Alice Cooper,126
+Buzzcocks,131
+Don Caballero,135
+Ben Lee,136
+Rachael Yamagata;Malcolm Burn,137
+Overkill,138
+Jus Allah,139
+Brisa Roché,140
+Codeine Velvet Club,145
+Graham Nash,147
+Kent,149
+Rich Boy,150
+LL Cool J,151
+Bill Bruford,152
+Matchbook Romance,155
+Ozzy Osbourne,156
+Hot Hot Heat,157
+Fergie,158
+Mobb Deep,160
+Them Crooked Vultures,162
+The Fratellis,163
+Carcass,164
+Epica,166
+Ryan Adams & The Cardinals,167
+The Kovenant,172
+Lifelike & Kris Menace,174
+Morbid Angel,182
+Etienne De Crécy,194
+Tricky / DJ Muggs,196
+Bubba Sparxxx,197
+Xzibit feat. Keri Hilson,198
+Il Divo,200

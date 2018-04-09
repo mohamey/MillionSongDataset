@@ -1,0 +1,61 @@
+Finger Eleven,1
+Nancy Wilson,5
+Dntel,11
+James Blunt,14
+Derek Webb,21
+Avishai Cohen,25
+Iron Butterfly,33
+Peter_ Bjorn and John Featuring Victoria Bergsman,35
+Zombie Nation,38
+This Day & Age,39
+Kirk Whalum,40
+Bobby Darin,42
+Big Punisher,43
+Bayside,46
+Captain Jack,47
+Belle & Sebastian,48
+Theuns Jordaan,53
+Sondre Lerche,56
+Hot Hot Heat,65
+Juan Carlos Baglietto,66
+Robert Gawlinski,67
+Warren Zevon,68
+John Cale,71
+Gang Starr,72
+Usher,73
+Alice Deejay,77
+Josh Rouse,82
+James Morrison,84
+Celtas Cortos,92
+J Dilla,94
+Blue October,95
+Kings Of Convenience Featuring Feist,99
+The Dresden Dolls,103
+Red Bennies,105
+Culture Club,115
+Friendly Fires,120
+The Fray,123
+Quickspace,125
+Modjo,133
+Walls Of Jericho,136
+Mark Lindsay,137
+Inner City,142
+El Cuarteto De Nos,143
+Santogold,144
+Aqua,145
+Chris Botti,146
+David Gray,147
+Reality Check,154
+MSTRKRFT / John Legend,155
+Ky-Mani Marley,157
+Something Happens,160
+Sonny James,161
+DJ Shadow,162
+Thee Sixpence,167
+Junior Kimbrough,175
+Tommy James & The Shondells,176
+Corinne Bailey Rae,178
+Carla Thomas,179
+Sticky Fingaz / Raekwon,180
+Les Yeux Noirs,193
+Donny Osmond,200
