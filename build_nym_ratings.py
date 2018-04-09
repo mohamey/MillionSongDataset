@@ -40,7 +40,7 @@ for nym, users in nym_users_dict.items():
             if play_count > 1:
                 if song not in nym_play_count_dict:
                     nym_play_count_dict[song] = 0
-                
+
                 nym_play_count_dict[song] += play_count
                 total_play_count += play_count
 
@@ -48,4 +48,4 @@ for nym, users in nym_users_dict.items():
         sorted_songs = sorted(nym_play_count_dict, key=lambda k: nym_play_count_dict[k], reverse=True)
         for song in sorted_songs:
             play_count = nym_play_count_dict[song]
-            output.write("{},{}\n".format(song, (play_count / total_play_count) * 100))
+            output.write("{},{}\n".format(song, play_count))
