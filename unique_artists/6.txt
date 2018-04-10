@@ -1,101 +1,46 @@
-Blondie,3
-Britt Nicole,7
-America,8
-Boyzone,9
-The Spill Canvas,11
-Ideals,13
-Roxy Music,15
-Alex Ubago,16
-Los Secretos,17
-Santa Sabina,18
-Bryan Ferry,19
-Los Concorde,24
-Explosions In The Sky,28
-Ely Guerra,30
-La Guardia,31
-Eagle-Eye Cherry,32
-The Fray,34
-Moving Units,35
-Chicken Shack,38
-Il Divo,41
-Albert Hammond,42
-Amaia Montero,54
-Bad Company,55
-Chuy Chavez,56
-Queens Club,57
-Angel Romero/London Philharmonic Orchestra/Jésus López-Cobos,59
-American Head Charge,61
-Bow Wow,62
-Keith Sweat Featuring Athena Cage,63
-La Oreja de Van Gogh,64
-themselves,65
-Subtle,66
-Keith Jarrett,68
-Rebelution,71
-Merche,73
-Green Day,74
-Black Star / Common,75
-Cutting Crew,79
-Dr. Alban,81
-Brisa Roché,82
-Tenth Avenue North,83
-Ozark Mountain Daredevils,84
-Frankie Goes To Hollywood,86
-Pharrell,87
-Mel & Kim,93
-Angel City Feat. Lara Mcallen,94
-Boom Bip & Doseone,96
-Hail Of Bullets,97
-Suicide,100
-Slowhill,101
-Paul Brandt,103
-The Faint,105
-Delerium,106
-Toby Keith,108
-Bonnie Tyler,111
-Savatage,113
-Parker_ Maceo,114
-Future Of Forestry,120
-Ratt,121
-Martin Carthy & Family,122
-John Farnham,123
-Denise Jannah,124
-PeterLicht,125
-Archie Bell & The Drells,126
-The Weavers,128
-Why?,129
-Brooke Fraser,131
-The Ozark Mountain Daredevils,132
-The Chordettes,133
-Lauryn Hill,137
-The Rubettes,138
-Gravity Kills,139
-Geri Halliwell,140
-Ana Torroja,141
-Sparks The Rescue,144
-Squeeze,147
-Creed,150
-Ice Cube / Dr. Dre,151
-Confederate Railroad,152
-The Foreign Exchange,153
-Philharmonia Orchestra,158
-MC Lars,159
-Tinie Tempah,161
-Stone Sour,163
-Cannibal Corpse,164
-Sugarland,165
-All Saints,167
-Madvillain,168
-The Fratellis,170
-Ochre,172
-Isobel Campbell / Mark Lanegan,174
-Kate Ryan,177
-Isobel Campbell & Mark Lanegan,180
-Saian Supa Crew,181
-Simple Minds,185
-Beneath the Massacre,186
-Stevie Wonder,192
-Kaizers Orchestra,193
-Commander Cody And His Lost Planet Airmen,196
-Stefon Harris,197
-Severe Torture,200
+L'Arc~en~Ciel,12
+Whitney Houston feat. Faith Evans and Kelly Price,28
+Philippe Rochard,42
+Eisbrecher,73
+UB40,86
+Bram Vermeulen,90
+Metallica / Marianne Faithfull,93
+White Town,99
+Rufus Wainwright,104
+Clara Hill,105
+DAVE MATTHEWS BAND,120
+The Stills,130
+Switchblade Symphony,131
+Soltero,135
+Platero Y Tu,136
+Queen,137
+Days Of The New,141
+DJ Khaled,146
+Radney Foster,147
+Cass McCombs,149
+The Decemberists,151
+Cliff Richard & The Shadows,152
+Jane Birkin,153
+Deep Blue Something,154
+Eddie Santiago,160
+Bahramji & Maneesh De Moor,161
+The Cure,162
+Apocalyptica,164
+Kelly Clarkson,165
+Duncan Dhu,168
+keller williams,169
+Eazy-E,170
+Powderfinger,172
+Wesley Willis,173
+Ry Cooder,176
+Angels Of Light & Akron/Family,178
+Nick Cave & The Bad Seeds,182
+Selena Gomez & The Scene,188
+The xx,191
+Four Letter Lie,193
+Charlie Louvin,195
+Zoegirl,196
+Killswitch Engage,197
+Butthole Surfers,198
+Modwheelmood,199
+Vanessa Williams,200

@@ -1,28 +1,129 @@
-Bell X1,29
-Emmylou Harris,46
-Audioslave,48
-Usher,49
-The Human League,57
-Bootsy Collins,62
-Seventh Day Slumber,67
-Company Flow,76
-Bruce Springsteen,87
-Keyshia Cole,88
-Herb Alpert And The Tijuana Brass,103
-Creed,118
-12 Stones,130
-Albert Hammond Jr.,132
-Milczenie Owiec,142
-Joshua Radin,143
-Timo Maas,147
-Apparat,148
-Zero 7,150
-Suzi Quatro,155
-War,164
-Chuck Loeb,172
-Era,173
-Race Car Riot,189
-Nada Surf,192
-Triple Fast Action,193
-Joshua Radin_ Schuyler Fisk,194
-Billy Curringham,196
+Jadon Lavik,1
+The Beach Boys,2
+Franz Ferdinand,3
+Apocalyptica / Sandra Nasic,4
+Children Of Bodom,5
+Leeland,6
+Blink-182,7
+Chuck Mangione,8
+Vangelis,10
+Crystal Waters,11
+Casting Crowns,12
+Escuela de Odio,13
+Albert Hammond Jr.,14
+Jackson Browne,16
+René Aubry,17
+Terra Naomi,18
+George Winston,19
+Empty Trash,20
+Bram Vermeulen,21
+Slim Cessna's Auto Club,22
+Kristian Stanfill,23
+Scooter,24
+Bullet For My Valentine,26
+Deep Forest,27
+Lifehouse,29
+Femme Fatale,30
+Alkaline Trio,32
+Lil Wayne / TQ / Big Tymers,33
+Of Montreal,34
+Type O Negative,37
+The Specials,38
+Extremoduro,41
+Bad Company,42
+Basic Channel,43
+Leona Lewis,46
+New Buffalo,47
+Elizeth Cardoso,49
+Julia Fordham,50
+Eelke Kleijn & Nick Hogendoorn,51
+Don Huonot,52
+Joe Nichols,53
+Night Ranger,55
+The Stranglers,57
+Michael McDonald,59
+Fate,62
+Steve Green,63
+The Commitments,64
+The Special AKA,66
+Erlend Øye,69
+The Commitments / Andrew Strong,73
+DecembeRadio,74
+Silversun Pickups,75
+Three 6 Mafia feat. Mike Jones and Paul Wall,77
+Fluke,78
+Kottonmouth Kings,79
+Moderatto,80
+We Came As Romans,81
+Crossfade,85
+Faith No More,86
+Niamh Kavanagh / The Commitments,87
+Angels Of Light & Akron/Family,92
+The Waterboys,94
+Moby,96
+Brand New,97
+David Gray,99
+Echo And The Bunnymen,100
+Big Head Todd and The Monsters,101
+Huey Lewis & The News,105
+Polly Paulusma,106
+Matt Wertz,107
+Tristania,108
+Hundred Reasons,109
+Angus & Julia Stone,110
+Huey Lewis And The News,111
+Green Day,112
+Jaci Velasquez,114
+Jim Brickman,115
+Yung Berg,116
+Nacho Cano,117
+Free,118
+Tim Hughes,119
+Stevie Ray Vaughan And Double Trouble,120
+Jarabe De Palo,122
+Rubin Steiner,124
+Keith Jarrett,125
+Spiderbait,126
+The Mars Volta,127
+Arthur Brown,129
+Blue Man Group,132
+The Beautiful South,135
+James,136
+The Calling,139
+True Faith,140
+Paul & Fritz Kalkbrenner,142
+Kutless,145
+Blue Oyster Cult,148
+Nightwish,149
+Black Sheep,151
+Cutting Crew,152
+The Killers / Lou Reed,153
+Dr Feelgood,155
+The Weepies,157
+Celldweller,158
+Wizo,160
+Fee,162
+Binary Star,165
+City And Colour,166
+Charlie Louvin,167
+Suicide,169
+Kreator,171
+Liquid Tension Experiment,173
+Toby Keith,175
+Boubacar Traoré,176
+Starfield,179
+Havok,180
+Queens Of The Stone Age,182
+Martin Carthy & Family,183
+Sun Eats Hours,184
+Del The Funky Homosapien,185
+The Weavers,188
+Bugge Wesseltoft,189
+Alison Krauss / Union Station,190
+Aaron Shust,191
+Vaya Con Dios,192
+Rush Of Fools,193
+Michael Learns To Rock,196
+Gaelic Storm,197
+The Chordettes,199
+Look Mexico,200

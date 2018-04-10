@@ -1,23 +1,19 @@
-Quietdrive,30
-Transvision Vamp,40
-Kelis,49
-Robert Palmer,78
-Evil Nine,82
-Thrice,89
-Matthew Dear,100
-Middle Of The Road,109
-Mellowdrone,120
-Ashra,127
-Weeping Tile,136
-Dragonette,146
-Babyface,147
-DJ SS,156
-Lupe Fiasco feat. Sarah Green,169
-Rafael Frost,170
-Eminem / Dr. Dre,171
-The Field Mice,172
-Decapitated,180
-Nana Caymmi,185
-Bruce BecVar,193
-Borknagar,198
-Despised Icon,199
+keller williams,104
+Röyksopp,118
+Weezer,122
+Franz Ferdinand,127
+Disturbing Tha Peace / Ludacris / Mystikal / I-20,128
+Queen,129
+Lisa Loeb & Nine Stories,136
+Junior Murvin,142
+Rihanna,153
+The Cure,159
+Deep Blue Something,162
+Incubus,169
+Lifehouse,174
+The Cardigans,180
+Gaz Nevada,183
+Michael Jackson,184
+Shakira ft. Wyclef Jean,185
+Hot Chip,187
+The Kooks,194

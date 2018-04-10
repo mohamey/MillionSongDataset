@@ -1,28 +1,102 @@
-Chris Joss,22
-A.B. Quintanilla III Y Los Kumbia Kings,45
-Drop Dead_ Gorgeous,66
-Funki Porcini,86
-Carter Burwell,91
-War Of Ages,96
-Bullet For My Valentine,99
-Subsonica,100
-10cc,115
-Basshunter Feat. DJ Mental Theos Bazzheadz,120
-Animals As Leaders,121
-Sugar Ray feat. Super Cat,125
-Margot & The Nuclear So And So's,126
-The Boxmasters,130
-Tracy Chapman,143
-Euge Groove,149
-Jack Johnson / Matt Costa,150
-The Jacksons,153
-Sly & The Family Stone,155
-Pantha Du Prince,163
-Hardwell,171
-Sergent Garcia,177
-The Ark,178
-Moving Mountains,189
-Mikromusic,190
-Karen O And The Kids,195
-Further Seems Forever,196
-Cole Porter with Vince Giordano & The Nighthawks,197
+Marion Meadows,10
+Nestor Torres,11
+The Cheeky Girls,14
+Arctic Monkeys,15
+The Dodos,16
+Danny Chan,17
+Michel Fugain,19
+Andres Calamaro,21
+Luigi Tenco,22
+Phish,29
+Moderat,30
+The Motors,32
+Antony & The Johnsons,33
+Billy Idol,34
+Louis Smith,35
+Republic,37
+B.B. King,40
+Twista,41
+Dexy's Midnight Runners,42
+George Younce,43
+Suzi Quatro,46
+Aleks Syntek,47
+Eric Johnson,50
+Corona,51
+In Flames,53
+Langhorne Slim,54
+Blind Mr. Jones,55
+Beach House,56
+Paolo Nutini,59
+Luciana,61
+Fugees,63
+Bob Lind,65
+Mark Knopfler,68
+Daddy Yankee,69
+Ying Yang Twins ft. Lil Jon & The East Side Boyz,72
+Dot Allison,77
+Jim Brickman;Herb Alpert;Bruce Upchurch,79
+Infected Mushroom,84
+John Waite,87
+Fort Minor (Featuring Black Thought Of The Roots And Styles Of Beyond),90
+The xx,92
+Duncan Dhu,95
+Alex North_ Jerry Goldsmith_ The National Philharmonic Orchestra,97
+Notorious B.I.G.,98
+Katrina & The Waves,99
+Datarock,102
+U2,104
+Fred Fortin,105
+Vienna Teng,106
+Huey Lewis And The News,108
+Magazine,109
+The Spill Canvas,110
+Tarot,114
+KMC Feat. Dhany,115
+Leona Lewis,117
+The Grass Roots,124
+The Audition,125
+Extremoduro,126
+Dr. Dre,127
+Sham 69,128
+Duran Duran,129
+Suzanne Vega,130
+Sole,131
+Every Avenue,134
+Sugarfree,136
+Vienio & Pele,137
+A Hawk And A Hacksaw,138
+Tears For Fears,141
+Lindsay Lohan,142
+Mates of State,143
+Circle Jerks,144
+Zeca Baleiro,145
+Pantera,146
+Crowded House,148
+Four Tet,150
+Philippe Rochard,151
+Smokey Robinson & The Miracles,152
+Rachael Yamagata,156
+Cake,158
+The Tough Alliance,159
+Blue Six,160
+Lange,162
+Bodyrox,163
+Andrew Jackson Jihad,164
+Kid Rock,166
+Tycho,168
+Empire Of The Sun,173
+Eminem / Nate Dogg,176
+Fall Out Boy,180
+The Casualties,182
+The Rocket Summer,183
+Sia,186
+Yölintu,187
+Fernando Ortega,188
+Sea Wolf,189
+Coyote Shivers,190
+UB40,191
+Dinosaur Jr,193
+Mayday Parade,197
+Envio,198
+Julie London,199
+Grizzly Bear,200
