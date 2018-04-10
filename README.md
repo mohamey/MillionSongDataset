@@ -26,3 +26,23 @@ Project back to scaling ratings between 1 and 10. Biggest change is that when no
 * Prediction RMSE: 1.776873
 
 Training Ratio is 0.2
+
+## 9th of April
+Processed nym results such that it outputs a list of artists in order of rank that are unique-ish to the Nym.
+
+## 10th of April
+A Refactor is sorely needed, code is messy. Code needs to be split into two segments:
+* Data preparation (pre-BLC)
+
+  Currently to prepare data a series of scripts must be run in a particular order. These need to be refactored into a module that is called by a data preparation script in the root of the project. This should take a number of arguments to define exactly what should happen
+* Result Processing (Post-BLC) - Done
+
+Information files generated while processing need to be stored better, naming makes no sense at the moment:
+* Input data for Data preparation should be in folder Raw_Data
+* Data pertaining to users and their mapping to ids, then row numbers should be stored in folder generated/User_Data
+* Data pertaining to songs and their mappings to ids should be stored in folder generated/Song_Data
+* Data pertaining to Nyms, their users, ratings, and songs should be stored in folder generated/Nym_Data
+
+A Config file used by the whole project should define all paths to input/output files so no more local variables are defined.
+
+Also need to begin work such that artists with a high score and low variance are selected as the Nym's seed artists.
