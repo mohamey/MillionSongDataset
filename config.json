@@ -1,0 +1,39 @@
+{
+  "dataset": {
+    "base": "Data/Dataset/",
+    "train_triplets": "train_triplets.txt",
+    "unique_tracks": "unique_tracks.txt",
+    "mismatched_sids": "sid_mismatches.txt",
+    "untrusted_song_ids_set": "untrusted_song_ids_set"
+  },
+  "song_data": {
+    "base": "Data/Song_Data",
+    "sids_to_ids_map": "sids_to_ids_map",
+    "sid_to_details_map": "sids_to_details_map"
+  },
+  "user_data": {
+    "base": "Data/User_Data",
+    "normalized_user_songs_map": "normalized_user_songs_map",
+    "user_songs_map": "user_songs_dict_map",
+    "user_to_id_map": "user_to_id_map",
+    "user_to_row_map": "user_to_row_map",
+    "user_total_play_counts_map": "user_total_play_counts_map",
+    "user_max_play_counts_map": "user_max_play_counts_map"
+  },
+  "nym_data": {
+    "base": "Data/Nym_Data/",
+    "P_with_ids": "P_with_ids",
+    "nym_ratings_dir": "Nym_Ratings/",
+    "nym_songs_dir": "Nym_Songs/",
+    "unique_artists_dir": "Unique_Artists/"
+  },
+  "sparse_mat": {
+    "base": "Data/BLC_Input/",
+    "rows": "users.txt",
+    "columns": "songs.txt",
+    "ratings": "ratings.txt"
+  },
+  "results": {
+    "P": "results/P"
+  }
+}
