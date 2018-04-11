@@ -1,10 +1,12 @@
 #!/usr/bin/python3
 
+from os import path
 from pickle import dump
 
 class MismatchedIdParser:
-    def __init__(self, sid_mismatch_file_path):
-        self.sid_mismatch_file_path = sid_mismatch_file_path
+    def __init__(self, config):
+        self.sid_mismatch_file_path = path.join(config["dataset"]["base"], config["dataset"]["mismatched_sids"])
+        self.untrusted_sids_set_path = path.join(config["dataset"]["base"], config["dataset"]["untrusted_song_ids_set"])
         self.untrusted_song_ids = set()
 
     # Parse the song id out of a line
@@ -29,5 +31,6 @@ class MismatchedIdParser:
 
     def write_data_to_disk(self):
         # Dump song ids to file
-        dump(self.untrusted_song_ids, open("processed_data/untrusted_song_ids_pickle", 'wb'))
+        with open(self.untrusted_sids_set_path, 'wb') as out:
+            dump(self.untrusted_song_ids, out)
         print("Stored {} song ids".format(len(self.untrusted_song_ids)))
