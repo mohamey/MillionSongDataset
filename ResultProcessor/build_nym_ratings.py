@@ -1,20 +1,19 @@
 #!/usr/bin/python3
 
 from pickle import load
-from csv import writer
 from os import listdir, remove, path
 
 class NymRatingBuilder():
-    def __init__(self, user_nym_pairs):
+    def __init__(self, user_nym_pairs, config):
+        self.user_songs_map_path = path.join(config["user_data"]["base"], config["user_data"]["user_songs_map"])
+        self.nym_ratings_path = path.join(config["nym_data"]["base"], config["nym_data"]["nym_ratings_dir"])
+
         self.nym_users_dict = {}
         self.user_nym_pairs = user_nym_pairs
-        self.user_track_dict = {}
+        self.user_songs_map = {}
 
-    def load_data(self, user_num_dict_pickle_path, user_track_dict_pickle_path):
+    def load_data(self):
         print("Loading in Data")
-        user_to_num_dict = load(open(user_num_dict_pickle_path, 'rb'))
-        num_to_user_dict = dict([(v, k) for k,v in user_to_num_dict.items()])
-        user_to_num_dict = {}
 
         for user, nym in self.user_nym_pairs:
             if nym not in self.nym_users_dict:
@@ -22,17 +21,15 @@ class NymRatingBuilder():
 
             self.nym_users_dict[nym].append(user)
 
-        num_to_user_dict = {}
-
         print("Loading user track dict")
-        with open(user_track_dict_pickle_path, 'rb') as input_pickle:
-            self.user_track_dict = load(input_pickle)
+        with open(self.user_songs_map_path, 'rb') as input_pickle:
+            self.user_songs_map = load(input_pickle)
         print("Done")
 
     def delete_old_ratings(self):
-        old_ratings_files = listdir("./nym_ratings")
+        old_ratings_files = listdir(self.nym_ratings_path)
         for f in old_ratings_files:
-            remove(path.join("./nym_ratings", f))
+            remove(path.join(self.nym_ratings_path, f))
 
     def build_ratings(self):
         # For each nym, iterate it's users and tally play count for each track
@@ -42,7 +39,7 @@ class NymRatingBuilder():
             # Iterate through each user in a Nym
             for user in users:
                 # For each user get every song they listened to and their play counts
-                for song, play_count in self.user_track_dict[user]:
+                for song, play_count in self.user_songs_map[user]:
                     if play_count > 1:
                         if song not in nym_play_count_dict:
                             nym_play_count_dict[song] = 0
@@ -50,7 +47,8 @@ class NymRatingBuilder():
                         nym_play_count_dict[song] += play_count
 
             # Write out the total play counts of each song listened to in a nym
-            with open("nym_ratings/{}.csv".format(nym), 'w') as output:
+            filename = "{}.csv".format(nym)
+            with open(path.join(self.nym_ratings_path, filename), 'w') as output:
                 sorted_songs = sorted(nym_play_count_dict, key=lambda k: nym_play_count_dict[k], reverse=True)
                 for song in sorted_songs:
                     play_count = nym_play_count_dict[song]

@@ -3,22 +3,24 @@
 from os import listdir, remove, path
 
 class UniqueNymArtistFilter:
-    def __init__(self, tol=3, song_directory="./nym_songs"):
+    def __init__(self, config, tol=3):
+        self.nym_songs_path = path.join(config["nym_data"]["base"], config["nym_data"]["nym_songs_dir"])
+        self.unique_artists_path = path.join(config["nym_data"]["base"], config["nym_data"]["unique_artists_dir"])
+
         self.tolerance = tol
-        self.song_directory = song_directory
         self.nym_files = []
         self.nym_artist_list = []
         self.nym_artist_rank = {}
 
     def load_songs(self):
         print("Getting list of songs")
-        self.nym_files = listdir(self.song_directory)
+        self.nym_files = listdir(self.nym_songs_path)
         print("Done")
 
     def delete_old_artists(self):
-        old_ratings_files = listdir("./unique_artists")
+        old_ratings_files = listdir(self.unique_artists_path)
         for f in old_ratings_files:
-            remove(path.join("./unique_artists", f))
+            remove(path.join(self.unique_artists_path, f))
 
     def build_top_nym_artists(self):
         print("Getting top nym artists")
@@ -29,14 +31,14 @@ class UniqueNymArtistFilter:
             print("Processing Nym {}".format(nym))
 
             artists = set()
-            with open("./nym_songs/{}".format(nym_file)) as input_file:
+            with open(path.join(self.nym_songs_path, nym_file)) as input_file:
                 for i in range(200):
                     line = input_file.readline()
                     if not line: break
 
                     _, artist = line.split(" <SEP> ")
 
-                    if not artist in self.nym_artist_rank[nym]:
+                    if artist not in self.nym_artist_rank[nym]:
                         self.nym_artist_rank[nym][artist] = i + 1
 
                     artists.add(artist)
@@ -63,7 +65,8 @@ class UniqueNymArtistFilter:
                 if num_matched <= self.tolerance:
                     unique_artists.add(artist)
 
-            with open("./unique_artists/{}.txt".format(nym_to_compare), 'w') as output:
+            filename = "{}.txt".format(nym_to_compare)
+            with open(path.join(self.unique_artists_path, filename), 'w') as output:
                 artist_rank_dict = {}
                 for unique_artist in unique_artists:
                     rank = self.nym_artist_rank[nym_to_compare][unique_artist]
