@@ -1,19 +1,25 @@
 #!/usr/bin/python3
 
-from pickle import load
+from pickle import load, dump
 from os import listdir, remove, path
 
 class NymRatingBuilder():
-    def __init__(self, user_nym_pairs, config):
+    def __init__(self, config):
         self.user_songs_map_path = path.join(config["user_data"]["base"], config["user_data"]["user_songs_map"])
         self.nym_ratings_path = path.join(config["nym_data"]["base"], config["nym_data"]["nym_ratings_dir"])
+        self.nym_users_map_path = path.join(config["nym_data"]["base"], config["nym_data"]["nym_users_map"])
+        self.path_to_P_with_ids = path.join(config["nym_data"]["base"], config["nym_data"]["P_with_ids"])
 
         self.nym_users_dict = {}
-        self.user_nym_pairs = user_nym_pairs
+        self.user_nym_pairs = []
         self.user_songs_map = {}
 
     def load_data(self):
         print("Loading in Data")
+
+        with open(self.path_to_P_with_ids) as input_file:
+            for line in input_file:
+                self.user_nym_pairs.append(map(int, line.split(",")))
 
         for user, nym in self.user_nym_pairs:
             if nym not in self.nym_users_dict:
@@ -53,3 +59,7 @@ class NymRatingBuilder():
                 for song in sorted_songs:
                     play_count = nym_play_count_dict[song]
                     output.write("{},{}\n".format(song, play_count))
+
+    def dump_nym_users_map(self):
+        with open(self.nym_users_map_path, 'wb') as out:
+            dump(self.nym_users_dict, out)
