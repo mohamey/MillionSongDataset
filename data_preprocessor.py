@@ -46,7 +46,7 @@ if args.gen_matrix or args.all:
     sparse_mat_generator = SparseMatGenerator(config)
     sparse_mat_generator.load_data()
     sparse_mat_generator.generate_sparse_mat()
-    sparse_mat_generator.write_user_row_map()
+    sparse_mat_generator.write_user_data()
     print("Done")
 
 if args.filter_sparse_songs or args.all:
