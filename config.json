@@ -18,14 +18,17 @@
     "user_to_id_map": "user_to_id_map",
     "user_to_row_map": "user_to_row_map",
     "user_total_play_counts_map": "user_total_play_counts_map",
-    "user_max_play_counts_map": "user_max_play_counts_map"
+    "user_max_play_counts_map": "user_max_play_counts_map",
+    "user_ratings_map": "user_ratings_map"
   },
   "nym_data": {
     "base": "Data/Nym_Data/",
     "P_with_ids": "P_with_ids",
     "nym_ratings_dir": "Nym_Ratings/",
     "nym_songs_dir": "Nym_Songs/",
-    "unique_artists_dir": "Unique_Artists/"
+    "unique_artists_dir": "Unique_Artists/",
+    "nym_variance_dir": "Nym_Song_Variances/",
+    "nym_users_map": "nym_users_map"
   },
   "sparse_mat": {
     "base": "Data/BLC_Input/",
