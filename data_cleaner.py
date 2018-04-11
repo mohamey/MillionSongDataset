@@ -1,23 +1,15 @@
 #!/usr/bin/python3
 
-import argparse
-from os import getcwd, path
 from DataCleaner.mismatched_sid_parser import MismatchedIdParser
 from DataCleaner.untrusted_song_filter import UntrustedSongsFilter
+from json import load
 
-# Constants
-CWD = getcwd()
+config = load(open("config.json"))
 
-# MismatchedIDParser constants
-MISMATCHED_SIDS_PATH = path.join(CWD, "data/sid_mismatches.txt")
-
-# UntrustedSongsFilter constants
-TRAIN_TRIPLETS_PATH = path.join(CWD, "data/train_triplets.txt")
-
-mismatched_id_parser = MismatchedIdParser(MISMATCHED_SIDS_PATH)
+mismatched_id_parser = MismatchedIdParser(config)
 untrusted_song_ids_set = mismatched_id_parser.parse_untrusted_song_ids()
 
 print("Filtering untrusted songs")
-untrusted_songs_filter = UntrustedSongsFilter(untrusted_song_ids_set, TRAIN_TRIPLETS_PATH)
+untrusted_songs_filter = UntrustedSongsFilter(untrusted_song_ids_set, config)
 untrusted_songs_filter.filter_untrusted_triplets()
 print("Done")
