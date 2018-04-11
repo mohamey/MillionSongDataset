@@ -1,14 +1,18 @@
 #!/usr/bin/python3
 
 from pickle import dump
+from os import path
 
 class TrainTripletParser:
-    def __init__(self, train_triplets_path):
+    def __init__(self, config):
         self.one_quota = 5
         self.user_songs_dict = {}
         self.song_to_id_dict = {}
         self.user_to_id_dict = {}
-        self.train_triplets_path = train_triplets_path
+        self.train_triplets_path = path.join(config["dataset"]["base"], config["dataset"]["train_triplets"])
+        self.user_songs_map_path = path.join(config["user_data"]["base"], config["user_data"]["user_songs_map"])
+        self.user_to_id_map_path = path.join(config["user_data"]["base"], config["user_data"]["user_to_id_map"])
+        self.sids_to_ids_map_path = path.join(config["song_data"]["base"], config["song_data"]["sids_to_ids_map"])
 
     def parse_train_triplets(self):
         with open(self.train_triplets_path, 'r') as train_triplets:
@@ -45,16 +49,15 @@ class TrainTripletParser:
 
     def write_data_to_disk(self):
         print("Writing data to disk")
-        output_path = "processed_data/user_track_dict_pickle"
-        with open(output_path, 'wb') as output:
+        with open(self.user_songs_map_path, 'wb') as output:
             dump(self.user_songs_dict, output)
-            print("Dumped {} users to {}".format(len(self.user_songs_dict), output_path))
+            print("Dumped {} users to {}".format(len(self.user_songs_dict), self.user_songs_map_path))
 
-        with open("metadata/users_to_num_dict_pickle", 'wb') as output:
+        with open(self.user_to_id_map_path, 'wb') as output:
             dump(self.user_to_id_dict, output)
             print("Dumped dict of users to numbers")
 
-        with open("metadata/song_ids_to_num_dict_pickle", 'wb') as output:
+        with open(self.sids_to_ids_map_path, 'wb') as output:
             dump(self.song_to_id_dict, output)
             print("Dumped dict of song ids to numbers")
 

@@ -1,10 +1,16 @@
 #!/usr/bin/python3
 
 from pickle import load, dump
+from os import path
 
 class SongRatingNormalizer:
-    def __init__(self, user_songs_dict_pickle_path):
-        self.user_songs_dict_pickle_path = user_songs_dict_pickle_path
+    def __init__(self, config):
+        # File Paths
+        self.user_songs_map_path = path.join(config['user_data']['base'], config['user_data']['user_songs_map'])
+        self.normalized_user_songs_map_path = path.join(config['user_data']['base'], config['user_data']['normalized_user_songs_map'])
+        self.user_total_play_counts_map_path = path.join(config['user_data']['base'], config['user_data']['user_total_play_counts_map'])
+        self.user_max_play_counts_map_path = path.join(config['user_data']['base'], config['user_data']['user_max_play_counts_map'])
+
         self.user_songs_dict = {}
         self.total_play_count_dict = {}
         self.max_play_counts_dict = {}
@@ -18,7 +24,7 @@ class SongRatingNormalizer:
 
     def load_user_songs_dict(self):
         print("Loading in users and their songs")
-        with open(self.user_songs_dict_pickle_path, 'rb') as input_file:
+        with open(self.user_songs_map_path, 'rb') as input_file:
             self.user_songs_dict = load(input_file)
         print("Done")
 
@@ -50,18 +56,15 @@ class SongRatingNormalizer:
 
     def write_data_to_disk(self):
         print("Writing Data to disk")
-        output_path = "processed_data/normalized_user_track_dict_pickle"
-        with open(output_path, 'wb') as output_file:
+        with open(self.normalized_user_songs_map_path, 'wb') as output_file:
             dump(self.user_songs_dict, output_file)
             print("There are {} users with useful data".format(len(self.user_songs_dict)))
 
-        output_path = "metadata/user_total_play_counts_pickle"
-        with open(output_path, 'wb') as output_file:
+        with open(self.user_total_play_counts_map_path, 'wb') as output_file:
             dump(self.total_play_count_dict, output_file)
             print("Dumped dict with total play counts")
 
-        output_path = "metadata/user_max_play_counts_pickle"
-        with open(output_path, 'wb') as output_file:
+        with open(self.user_max_play_counts_map_path, 'wb') as output_file:
             dump(self.max_play_counts_dict, output_file)
             print("Dumped dict with max play counts")
         print("Done")
