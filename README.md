@@ -46,3 +46,15 @@ Information files generated while processing need to be stored better, naming ma
 A Config file used by the whole project should define all paths to input/output files so no more local variables are defined.
 
 Also need to begin work such that artists with a high score and low variance are selected as the Nym's seed artists.
+
+## 11th of April
+Refactor finished, code has three entry points:
+* data_cleaner.py -- Run when dataset has just been downloaded and needs cleaning
+* data_preprocessor.py -- Run to build maps of users to songs, normalize play counts, get ratings, and generate a sparse matrix
+* process_results.py -- Run to process P file and build nym ratings, top song ranks, and get popular artists for each nym
+
+To run any of the code, the following files need to be downloaded:
+
+* Data/Dataset/train_triplets.txt - Site down, link will be published later
+* Data/Dataset/unique_tracks.txt - Site down, link will be published later
+* Data/Dataset/mismatched_sids.txt - Site down, link will be published later
