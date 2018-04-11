@@ -10,6 +10,7 @@ class SparseMatGenerator:
         self.user_total_play_counts_map_path = path.join(config["user_data"]["base"], config["user_data"]["user_total_play_counts_map"])
         self.user_songs_map_path = path.join(config["user_data"]["base"], config["user_data"]["normalized_user_songs_map"])
         self.user_row_map_path = path.join(config["user_data"]["base"], config["user_data"]["user_to_row_map"])
+        self.user_ratings_map_path = path.join(config["user_data"]["base"], config["user_data"]["user_ratings_map"])
         self.users_path = path.join(config["sparse_mat"]["base"], config["sparse_mat"]["rows"])
         self.songs_path = path.join(config["sparse_mat"]["base"], config["sparse_mat"]["columns"])
         self.ratings_path = path.join(config["sparse_mat"]["base"], config["sparse_mat"]["ratings"])
@@ -21,6 +22,7 @@ class SparseMatGenerator:
         self.total_play_counts_dict = {}
         self.sorted_users = []
         self.user_row_map = {}
+        self.user_ratings_map = {}
 
     def load_data(self):
         print("Loading in data")
@@ -50,17 +52,26 @@ class SparseMatGenerator:
 
                     if user not in self.user_row_map:
                         self.user_row_map[user] = len(self.user_row_map)
+                        self.user_ratings_map[user] = {}
 
                     user_row = self.user_row_map[user]
                     users.write("{}\n".format(str(user_row)))
                     songs.write("{}\n".format(str(song)))
                     ratings.write("{}\n".format(str(rating)))
 
+                    self.user_ratings_map[user][song] = rating
+
             print("Done")
 
-    def write_user_row_map(self):
+    def write_user_data(self):
         print("Writing user row map to pickle")
         with open(self.user_row_map_path, 'wb') as out:
             dump(self.user_row_map, out)
             print("Dumped user row map")
+
+        print("Writing user ratings map to pickle")
+        with open(self.user_ratings_map_path, 'wb') as out:
+            dump(self.user_ratings_map, out)
+            print("Dumped user ratings map")
+
         print("Done")
