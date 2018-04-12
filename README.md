@@ -55,9 +55,9 @@ Refactor finished, code has three entry points:
 
 To run any of the code, the following files need to be downloaded:
 
-* Data/Dataset/train_triplets.txt - Site down, link will be published later
-* Data/Dataset/unique_tracks.txt - Site down, link will be published later
-* Data/Dataset/mismatched_sids.txt - Site down, link will be published later
+* Data/Dataset/train_triplets.txt - [Available Here](http://labrosa.ee.columbia.edu/millionsong/sites/default/files/challenge/train_triplets.txt.zip)
+* Data/Dataset/unique_tracks.txt - [Available Here](https://labrosa.ee.columbia.edu/millionsong/sites/default/files/AdditionalFiles/unique_tracks.txt)
+* Data/Dataset/sid_mismatches.txt - [Available Here](http://labrosa.ee.columbia.edu/millionsong/sites/default/files/tasteprofile/sid_mismatches.txt)
 
 ### Further Work RE: Rating Variance
 Code now calculates variance of each users ratings and shows the mean rating for each item. Mean Ratings are pretty bad, mostly less than 2 for each item. This is probably due to an excess of 1s in input data. Not sure if this means if I should re-evaluate data preprocessing. Will probably try evaluating against spotify first
