@@ -3,25 +3,20 @@
 from os import path
 from pickle import load
 
-######## To Calculate Variance
-# Need list of users in each Nym
-# Need max play count for each user
-# Need play counts for each song for each user
-
-# Get top 200 songs for each nym
-# Parse artists from lists
-
-
 class ArtistVarianceCalculator:
     def __init__(self, config):
         self.nym_users_map_path = path.join(config["nym_data"]["base"], config["nym_data"]["nym_users_map"])
         self.nym_ratings_path = path.join(config["nym_data"]["base"], config["nym_data"]["nym_ratings_dir"])
         self.nym_variance_path = path.join(config["nym_data"]["base"], config["nym_data"]["nym_variance_dir"])
         self.user_ratings_map_path = path.join(config["user_data"]["base"], config["user_data"]["user_ratings_map"])
+        self.sids_to_details_map_path = path.join(config["song_data"]["base"], config["song_data"]["sid_to_details_map"])
+        self.sids_to_ids_map_path = path.join(config["song_data"]["base"], config["song_data"]["sids_to_ids_map"])
 
         self.nym_users_map = {}
         self.user_ratings_map = {}
         self.nym_song_variance = {}
+        self.sids_to_details_map = {}
+        self.ids_to_sids_map = {}
 
     def load_data(self):
         print("Loading in Data")
@@ -30,6 +25,15 @@ class ArtistVarianceCalculator:
 
         with open(self.user_ratings_map_path, 'rb') as input_pickle:
             self.user_ratings_map = load(input_pickle)
+
+        with open(self.sids_to_details_map_path, 'rb') as input_pickle:
+            self.sids_to_details_map = load(input_pickle)
+
+        with open(self.sids_to_ids_map_path, 'rb') as input_pickle:
+            sids_to_ids_map = load(input_pickle)
+            self.ids_to_sids_map = dict([(v,k) for k,v in sids_to_ids_map.items()])
+            sids_to_ids_map = {}
+
         print("Done")
 
     def read_top_tracks(self, file, num_lines=200):
@@ -53,8 +57,7 @@ class ArtistVarianceCalculator:
 
             with open(path.join(self.nym_ratings_path, filename)) as nym_ratings_file:
                 songs = self.read_top_tracks(nym_ratings_file)
-                num_users = len(users)
-                song_variance_mean_triplets = []
+                song_variance_mean_rating_quad = []
 
                 # Iterate songs, getting mean rating
                 for song in songs:
@@ -67,10 +70,20 @@ class ArtistVarianceCalculator:
                     variance_list = map((lambda x: (x - mean_rating)**2), rating_list)
                     variance = sum(variance_list) / num_users
 
-                    song_variance_mean_triplets.append((song, variance, mean_rating))
+                    # Calculate the scores for each song
+                    song_rating = mean_rating - variance
+
+                    song_variance_mean_rating_quad.append((song, variance, mean_rating, song_rating))
 
                 with open(path.join(self.nym_variance_path, filename), 'w') as output:
-                    output.write("Song ID, Variance, Mean Rating\n")
-                    for song, variance, mean_rating in song_variance_mean_triplets:
-                        output.write("{}, {}, {}\n".format(song, variance, mean_rating))
+                    output.write("Song ID, Variance, Mean Rating, Score\n")
+                    song_variance_mean_rating_quad = sorted(song_variance_mean_rating_quad, key=lambda x: x[3], reverse=True)
+                    for song, variance, mean_rating, score in song_variance_mean_rating_quad:
+                        output.write("{}, {}, {}, {}\n".format(song, variance, mean_rating, score))
 
+                song_output = "{}_songs.csv".format(nym)
+                with open(path.join(self.nym_variance_path, song_output), 'w') as output:
+                    for song, _, _, _ in song_variance_mean_rating_quad:
+                        sid = self.ids_to_sids_map[song]
+                        artist, song_name = self.sids_to_details_map[sid]
+                        output.write("{} <SEP> {}\n".format(song_name, artist))
