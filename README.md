@@ -61,3 +61,9 @@ To run any of the code, the following files need to be downloaded:
 
 ### Further Work RE: Rating Variance
 Code now calculates variance of each users ratings and shows the mean rating for each item. Mean Ratings are pretty bad, mostly less than 2 for each item. This is probably due to an excess of 1s in input data. Not sure if this means if I should re-evaluate data preprocessing. Will probably try evaluating against spotify first
+
+## 13th of April
+Bug found!
+After users have been assigned to nyms and their songs mean ratings calculated, there are songs with only one user in the Nym who've listened to it. The issue is that sometimes this song is the most listened to song by the user, giving it a rating of 5 and a variance of 0. Current ranking metric gives it a score of 5/5, so it ends up scoring ridiculously high even though only one user has listened to the song.
+
+A possible solution is to only rank songs that a required number of users have listened to, like 25% of users.
