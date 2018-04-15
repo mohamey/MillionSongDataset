@@ -54,36 +54,77 @@ class ArtistVarianceCalculator:
             print("Processing nym {}".format(nym))
             # Get top 200 songs for nym
             filename = "{}.csv".format(nym)
+            num_nym_users = len(users)
 
             with open(path.join(self.nym_ratings_path, filename)) as nym_ratings_file:
                 songs = self.read_top_tracks(nym_ratings_file)
                 song_variance_mean_rating_quad = []
+
+                num_users_list = []
+                song_variances = []
 
                 # Iterate songs, getting mean rating
                 for song in songs:
                     # Get list of ratings for song from users who listened to it
                     rating_list = [self.user_ratings_map[user][song] for user in users if song in self.user_ratings_map[user]]
                     num_users = len(rating_list)
-                    total_play_count = sum(rating_list)
-                    mean_rating = total_play_count / num_users
 
-                    variance_list = map((lambda x: (x - mean_rating)**2), rating_list)
-                    variance = sum(variance_list) / num_users
+                    if num_users >= 5:
+                        total_play_count = sum(rating_list)
+                        mean_rating = total_play_count / num_users
 
-                    # Calculate the scores for each song
-                    song_rating = mean_rating - variance
+                        variance_list = map((lambda x: (x - mean_rating)**2), rating_list)
+                        variance = sum(variance_list) / num_users
 
-                    song_variance_mean_rating_quad.append((song, variance, mean_rating, song_rating))
+                        # Calculate the scores for each song
+                        song_rating = mean_rating - variance
+
+                        song_variance_mean_rating_quad.append((song, variance, mean_rating, song_rating, num_users))
+
+                        num_users_list.append(num_users)
+                        song_variances.append(variance)
+
+                # Build new quad
+                max_num_users = max(num_users_list)
+                min_num_users = min(num_users_list)
+                normalized_max_users = max_num_users - min_num_users
+                variance_range = max(song_variances) - min(song_variances)
+                for i in range(len(num_users_list)):
+                    num_users = num_users_list[i] - min_num_users
+                    song_variance = song_variances[i]
+
+                    normalized_num_users = 0
+                    if num_users != normalized_max_users:
+                        normalized_num_users = (num_users - min_num_users) / normalized_max_users
+
+                    penalty = variance_range * (1 - normalized_num_users)
+                    weighted_penalty = penalty * 0.1
+
+                    weighted_variance = song_variance + weighted_penalty
+
+                    # Swap out variance for the quad
+                    song, _, mean_rating, _, num_users = song_variance_mean_rating_quad[i]
+                    song_rating = mean_rating - weighted_variance
+                    song_variance_mean_rating_quad[i] = (song, weighted_variance, mean_rating, song_rating, num_users)
 
                 with open(path.join(self.nym_variance_path, filename), 'w') as output:
-                    output.write("Song ID, Variance, Mean Rating, Score\n")
+                    output.write("Song ID, Variance, Mean Rating, Score, Num Users\n")
                     song_variance_mean_rating_quad = sorted(song_variance_mean_rating_quad, key=lambda x: x[3], reverse=True)
-                    for song, variance, mean_rating, score in song_variance_mean_rating_quad:
-                        output.write("{}, {}, {}, {}\n".format(song, variance, mean_rating, score))
+                    for song, variance, mean_rating, score, num_users in song_variance_mean_rating_quad:
+                        output.write("{}, {}, {}, {}, {}\n".format(song, variance, mean_rating, score, num_users))
 
                 song_output = "{}_songs.csv".format(nym)
                 with open(path.join(self.nym_variance_path, song_output), 'w') as output:
-                    for song, _, _, _ in song_variance_mean_rating_quad:
+                    for song, _, _, _, _ in song_variance_mean_rating_quad:
+                        sid = self.ids_to_sids_map[song]
+                        artist, song_name = self.sids_to_details_map[sid]
+                        output.write("{} <SEP> {}\n".format(song_name, artist))
+
+                # Get 5 most played from top 10
+                tup = sorted(song_variance_mean_rating_quad[:10], key=lambda x: x[1], reverse=False)
+                song_output = "{}_top_songs.csv".format(nym)
+                with open(path.join(self.nym_variance_path, song_output), 'w') as output:
+                    for song, _, _, _, _ in tup:
                         sid = self.ids_to_sids_map[song]
                         artist, song_name = self.sids_to_details_map[sid]
                         output.write("{} <SEP> {}\n".format(song_name, artist))
