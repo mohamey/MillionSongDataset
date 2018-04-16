@@ -1,7 +1,6 @@
 #!/usr/bin/python3
 
 import argparse
-from os import getcwd, path
 from json import load
 from DataPreprocessor.build_user_track_dict import TrainTripletParser
 from DataPreprocessor.normalize_play_counts import SongRatingNormalizer
@@ -43,7 +42,7 @@ if args.normalize_ratings or args.all:
 if args.gen_matrix or args.all:
     # Generate sparse matrix for BLC
     print("Generating Sparse Matrix")
-    sparse_mat_generator = SparseMatGenerator(config)
+    sparse_mat_generator = SparseMatGenerator(config, num_users=40000)
     sparse_mat_generator.load_data()
     sparse_mat_generator.generate_sparse_mat()
     sparse_mat_generator.write_user_data()

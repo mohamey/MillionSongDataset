@@ -140,6 +140,18 @@ class ArtistVarianceCalculator:
 
             return results_list
 
+    # String formatting for artists, reduce collaborations to single artist
+    def format_artist(self, artist):
+        final_artist_string = artist
+        stop_words = ["/", " Feat ", " feat ", " ft ", " Vs", " vs"]
+
+        for stop_word in stop_words:
+            if stop_word in final_artist_string:
+                end = final_artist_string.index(stop_word)
+                final_artist_string = final_artist_string[:end].strip()
+
+        return final_artist_string
+
     def write_results_to_file(self, final_metrics, nym):
         filename = "{}.csv".format(nym)
         song_output = "{}_songs.csv".format(nym)
@@ -164,7 +176,7 @@ class ArtistVarianceCalculator:
                 song_details.write("{} <SEP> {}\n".format(song_name, artist))
 
         # Get 5 most played from top 10
-        tup = sorted(sorted_results[:10], key=lambda x: x[USER_COUNT], reverse=False)
+        tup = sorted(sorted_results[:20], key=lambda x: x[VARIANCE], reverse=False)
         song_output = "{}_top_songs.csv".format(nym)
         with open(path.join(self.nym_variance_path, song_output), 'w') as output:
             for results_dict in tup:
@@ -172,6 +184,24 @@ class ArtistVarianceCalculator:
                 sid = self.ids_to_sids_map[song_id]
                 artist, song_name = self.sids_to_details_map[sid]
                 output.write("{} <SEP> {}\n".format(song_name, artist))
+
+        # tup = sorted_results[:20]
+        artist_score_dict = {}
+        for index, results_dict in enumerate(tup):
+            song_id = results_dict[SONG_ID]
+            sid = self.ids_to_sids_map[song_id]
+            artist, _ = self.sids_to_details_map[sid]
+            artist = self.format_artist(artist)
+            if artist not in artist_score_dict:
+                artist_score_dict[artist] = 0
+
+            artist_score_dict[artist] += 20 - index
+
+        song_output = "{}_top_artists.csv".format(nym)
+        with open(path.join(self.nym_variance_path, song_output), 'w') as output:
+            sorted_artists = sorted(artist_score_dict, key=lambda x: artist_score_dict[x], reverse=True)
+            for artist in sorted_artists:
+                output.write("{} <SEP> {}\n".format(artist, artist_score_dict[artist]))
 
     def calculate_variance(self):
         for nym, users in self.nym_users_map.items():
