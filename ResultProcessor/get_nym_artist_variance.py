@@ -143,7 +143,7 @@ class ArtistVarianceCalculator:
     # String formatting for artists, reduce collaborations to single artist
     def format_artist(self, artist):
         final_artist_string = artist
-        stop_words = ["/", " Feat ", " feat ", " ft ", " Vs", " vs"]
+        stop_words = ["/", " Feat", " feat ", " ft ", " Vs", " vs"]
 
         for stop_word in stop_words:
             if stop_word in final_artist_string:
