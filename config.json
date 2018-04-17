@@ -28,7 +28,18 @@
     "nym_songs_dir": "Nym_Songs/",
     "unique_artists_dir": "Unique_Artists/",
     "nym_variance_dir": "Nym_Song_Variances/",
-    "nym_users_map": "nym_users_map"
+    "nym_users_map": "nym_users_map",
+    "file_formats": {
+      "top_artists": "{}_top_artists.csv",
+      "artists": "{}_artists.csv"
+    }
+  },
+  "evaluation_data": {
+    "base": "Data/Evaluation_Data",
+    "file_formats": {
+      "nym_artists": "{}_artists.csv",
+      "nym_recommendations": "{}_recommendations.csv"
+    }
   },
   "sparse_mat": {
     "base": "Data/BLC_Input/",
@@ -38,5 +49,12 @@
   },
   "results": {
     "P": "results/P_40k"
+  },
+  "spotify": {
+    "client_id": "9aac513fd5624a2a94c0e8f8b3224557",
+    "client_secret": "0393fdf0c9dc4e09bff4fb7c202f4703",
+    "redirect_uri": "http://localhost/",
+    "scope": "user-library-read",
+    "username": "yasirm96"
   }
 }
