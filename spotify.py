@@ -17,6 +17,8 @@ class SpotifyWrapper:
         self.spotify = None
         self.filtered_artists = set()
 
+        self.song_uri_dict = {}
+
     # String formatting for artists, reduce collaborations to single artist
     def format_artist(self, artist):
         final_artist_string = artist
@@ -28,6 +30,17 @@ class SpotifyWrapper:
                 final_artist_string = final_artist_string[:end].strip()
 
         return final_artist_string
+
+    def format_song(self, song):
+        final_song_string = song
+        stop_words = ["/", " Feat", " feat ", " ft ", " Vs", " vs", '(', '[', '?', '!']
+
+        for stop_word in stop_words:
+            if stop_word in final_song_string:
+                end = final_song_string.index(stop_word)
+                final_song_string = final_song_string[:end].strip()
+
+        return final_song_string
 
     def authorize_user(self):
         token = util.prompt_for_user_token(self.username, self.scope)
@@ -59,6 +72,36 @@ class SpotifyWrapper:
                     artist_uri = artist_result["uri"]
 
         return artist_uri
+
+    def get_song_uri(self, song_artist_key):
+        if not self.spotify:
+            print("Spotify Object not yet authorized")
+            return
+
+        song, artist = map(str.strip, song_artist_key.split("<SEP>"))
+        song = self.format_song(song)
+        artist = self.format_artist(artist)
+        print(song)
+        print(artist)
+
+        if not song:
+            return None
+
+        try:
+            results = self.spotify.search(q=song, type="track")
+        except spotipy.client.SpotifyException:
+            self.authorize_user()
+            results = self.spotify.search(q=song, type="track")
+
+        song_uri = None
+        for item in results["tracks"]["items"]:
+            # if item["name"].lower() == song.lower():
+            for artist_item in item["artists"]:
+                if self.format_artist(artist_item["name"]).lower() == artist.lower():
+                    song_uri = item["uri"].split(":")[2]
+                    break
+
+        return song_uri
 
     def get_recommendations(self, artist_uris, num_artists=100):
         if not self.spotify:
