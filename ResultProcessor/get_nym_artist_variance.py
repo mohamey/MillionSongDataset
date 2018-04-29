@@ -178,7 +178,7 @@ class ArtistVarianceCalculator:
                 sid = self.ids_to_sids_map[song]
                 artist, song_name = self.sids_to_details_map[sid]
                 rating = self.scale_rating(200 - index)
-                song_details.write("{} <SEP> {} <SEP> {}\n".format(song_name, artist, rating))
+                song_details.write("{} <SEP> {} <SEP> {} <SEP> {}\n".format(song_name, artist, rating, num_users))
 
         # Get 5 most played from top 10
         tup = sorted(sorted_results[:20], key=lambda x: x[VARIANCE], reverse=False)

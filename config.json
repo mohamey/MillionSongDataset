@@ -36,6 +36,10 @@
       "songs": "{}_songs.csv"
     }
   },
+  "database_data": {
+    "base": "Data/DB_Data/",
+    "input_data": "input.csv"
+  },
   "evaluation_data": {
     "base": "Data/Evaluation_Data",
     "file_formats": {

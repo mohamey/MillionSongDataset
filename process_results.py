@@ -68,6 +68,4 @@ if args.gen_db_ratings or args.all:
     nym_rating_formatter = NymRatingFormatter(config)
     nym_rating_formatter.load_data()
     nym_rating_formatter.parse_song_rankings()
-    spotipy = SpotifyWrapper(config)
-    spotipy.authorize_user()
-    nym_rating_formatter.get_song_spotify_ids(spotipy)
+    nym_rating_formatter.generate_db_input()
