@@ -38,7 +38,8 @@
   },
   "database_data": {
     "base": "Data/DB_Data/",
-    "input_data": "input.csv"
+    "input_data": "ratings.csv",
+    "nym_data": "nyms.csv"
   },
   "evaluation_data": {
     "base": "Data/Evaluation_Data",
