@@ -35,11 +35,13 @@ class SparseSongFilter:
     def write_filtered_matrix(self):
         num_ratings_removed = 0
         remaining_users = set()
+        total_users = set()
         remaining_songs = set()
         total_ratings = 0
         print("Writing out new input files")
         with open(self.users_path, 'w') as users, open(self.songs_path, 'w') as songs, open(self.ratings_path, 'w') as ratings:
             for (user, song, rating) in self.triplet_list:
+                total_users.add(user)
                 if song not in self.songs_to_remove:
                     users.write(user)
                     songs.write(song)
@@ -58,5 +60,6 @@ class SparseSongFilter:
 
         print("{} ratings removed".format(num_ratings_removed))
         print("{} Users".format(num_users))
+        print("{} Users removed".format(len(total_users) - num_users))
         print("{} Songs".format(num_songs))
         print("Density: {}".format(density))

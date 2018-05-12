@@ -43,7 +43,9 @@ class SpotifyWrapper:
         return final_song_string
 
     def authorize_user(self):
+        print("Authorizing")
         token = util.prompt_for_user_token(self.username, self.scope)
+        print(token)
         self.spotify = spotipy.Spotify(auth=token)
 
     def get_artist_uris(self, artists):
@@ -71,6 +73,7 @@ class SpotifyWrapper:
                 if artist.lower() in artist_result["name"].lower():
                     artist_uri = artist_result["uri"]
 
+        print(artist_uri)
         return artist_uri
 
     def get_song_uri(self, song_artist_key):
@@ -81,8 +84,8 @@ class SpotifyWrapper:
         song, artist = map(str.strip, song_artist_key.split("<SEP>"))
         song = self.format_song(song)
         artist = self.format_artist(artist)
-        print(song)
-        print(artist)
+        # print(song)
+        # print(artist)
 
         if not song:
             return None

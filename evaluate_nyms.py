@@ -1,8 +1,8 @@
 #! /usr/bin/python3
 
 from json import load
-from os import path
-from os import listdir
+from operator import add, truediv
+from os import path, listdir
 from spotify import SpotifyWrapper
 
 config = load(open("config.json"))
@@ -23,7 +23,7 @@ def get_top_artists(filepath):
                 break
 
             artist = sp.format_artist(line.split("<SEP>")[0].strip())
-            print(artist)
+            # print(artist)
             nym_top_artists.append(artist)
 
     return nym_top_artists
@@ -54,12 +54,16 @@ dir_files = listdir(top_artists_dir)
 top_artists_files = [f for f in dir_files if f.endswith(top_artists_file_format[2:])]
 artists_files = [f for f in dir_files if f.endswith(artists_file_format[2:])]
 
+result_file = open("nym_evaluation.txt", 'w')
+
 for top_artists_file in top_artists_files:
-    average_precision = 0
-    average_recall = 0
+    average_precision = [0,0,0,0,0]
+    average_recall = [0,0,0,0,0]
+    intervals = [10, 30, 50, 70, 100]
 
     nym = top_artists_file.split("_")[0]
     print("Processing Nym {}".format(nym))
+    result_file.write("Processing Nym {}\n".format(nym))
 
     # Read Nym artists and top nym artists from file
     nym_top_artists = get_top_artists(path.join(top_artists_dir, top_artists_file))
@@ -70,28 +74,34 @@ for top_artists_file in top_artists_files:
 
     for i in range(5):
         # Get recommendations from Spotify
+        print("Getting artist uris")
         artist_uris = sp.get_artist_uris(nym_top_artists)
+        print("Getting recommendations")
         recommendations = sp.get_recommendations(artist_uris, num_artists=100)
 
-        # Calculate Recall
-        num_matches = len([recommendation for recommendation in recommendations if recommendation in nym_artists])
-        precision = num_matches / 100
-        recall = num_matches / len(nym_artists)
+        precision_list = []
+        recall_list = []
+        for interval in intervals:
+            recommendation_subset = list(recommendations)[:interval]
+            num_matches = len([recommendation for recommendation in recommendation_subset if recommendation in nym_artists])
+            precision_list.append(num_matches / interval)
+            recall_list.append(num_matches / len(nym_artists))
 
-        average_precision += precision
-        average_recall += recall
+        average_precision = map(add, average_precision, precision_list)
+        average_recall = map(add, average_recall, recall_list)
 
-        print("Num Matches: {}".format(num_matches))
-        print("Precision: {}".format(precision))
-        print("Recall: {}".format(recall))
+        print(precision_list)
+        print(recall_list)
 
-        # Write out data to file
-        # artist_list_filepath = path.join(evaluation_dir, evaluation_artists_file_format.format(nym))
-        # artist_recommendation_filepath = path.join(evaluation_dir, evaluation_recommendations_file_format.format(nym))
-        #
-        # write_results(nym_artists, artist_list_filepath)
-        # write_results(recommendations, artist_recommendation_filepath)
+        print("Finished Iteration {}".format(i))
 
-    print("Average Precision: {}".format(average_precision / 5))
-    print("Average Recall: {}".format(average_recall / 5))
+    average_precision = [precision / 5 for precision in average_precision]
+    average_recall = [recall / 5 for recall in average_recall]
+    result_file.write("Num Artists: {}\n".format(len(nym_artists)))
+    result_file.write("Average Precision: {}\n".format(str(average_precision)))
+    result_file.write("Average Recall: {}\n".format(str(average_recall)))
+    print(average_precision)
+    print(average_recall)
+
+result_file.close()
 
