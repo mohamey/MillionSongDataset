@@ -1,7 +1,7 @@
 #! /usr/bin/python3
 
 from json import load
-from operator import add
+from operator import add, truediv
 from os import listdir, path
 from pickle import load as pload
 from spotify import SpotifyWrapper
@@ -37,7 +37,7 @@ def get_top_artists(filepath):
                 break
 
             artist = sp.format_artist(line.split("<SEP>")[0].strip())
-            print(artist)
+            # print(artist)
             nym_top_artists.append(artist)
 
     return nym_top_artists
@@ -65,7 +65,6 @@ def rank_artists(artist_list):
     for index, artist in enumerate(artist_list):
         if artist not in artist_ranks:
             artist_ranks[artist] = 0
-
         artist_ranks[artist] += len(artist_list) - index
 
     return sorted(artist_ranks, key=lambda x: artist_ranks[x], reverse=True)[:10]

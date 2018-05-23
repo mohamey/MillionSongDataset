@@ -7,6 +7,8 @@ from ResultProcessor.build_nym_ratings import NymRatingBuilder
 from ResultProcessor.get_top_nym_songs import SongListBuilder
 from ResultProcessor.get_unique_nym_artists import UniqueNymArtistFilter
 from ResultProcessor.get_nym_artist_variance import ArtistVarianceCalculator
+from ResultProcessor.NymRatingFormatter import NymRatingFormatter
+from spotify import SpotifyWrapper
 
 config = load(open("config.json"))
 
@@ -17,6 +19,7 @@ parser.add_argument("--gen_nym_ratings", help="Tally total play count for each s
 parser.add_argument("--gen_song_list", help="Generate lists of songs and artists based on nym ratings", action="store_true")
 parser.add_argument("--gen_unique_artists", help="Generate a list of artists unique-ish to each Nym", action="store_true")
 parser.add_argument("--calculate_variances", help="Calculate the variance for each item rated in a Nym", action="store_true")
+parser.add_argument("--gen_db_ratings", help="Translates variance rankings to spotify song ids with rating", action="store_true")
 parser.add_argument("--all", help="Do all of the above", action="store_true")
 args = parser.parse_args()
 
@@ -59,3 +62,10 @@ if args.calculate_variances or args.all:
     artist_variance_calculator = ArtistVarianceCalculator(config)
     artist_variance_calculator.load_data()
     artist_variance_calculator.calculate_variance()
+
+if args.gen_db_ratings or args.all:
+    print("Generating ratings for db")
+    nym_rating_formatter = NymRatingFormatter(config)
+    nym_rating_formatter.load_data()
+    nym_rating_formatter.parse_song_rankings()
+    nym_rating_formatter.generate_db_input()

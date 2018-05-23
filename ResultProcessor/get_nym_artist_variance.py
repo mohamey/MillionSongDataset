@@ -1,5 +1,6 @@
 #!/usr/bin/python3
 
+from math import floor
 from os import path
 from pickle import load
 
@@ -152,6 +153,9 @@ class ArtistVarianceCalculator:
 
         return final_artist_string
 
+    def scale_rating(self, rank, max_rank=200):
+        return "{0:.2f}".format(3 + (rank / max_rank) * 2)
+
     def write_results_to_file(self, final_metrics, nym):
         filename = "{}.csv".format(nym)
         song_output = "{}_songs.csv".format(nym)
@@ -159,7 +163,7 @@ class ArtistVarianceCalculator:
         sorted_results = sorted(final_metrics, key=lambda x: x[SCORE], reverse=True)
         with open(path.join(self.nym_variance_path, filename), 'w') as scores_csv, open(path.join(self.nym_variance_path, song_output), 'w') as song_details:
             scores_csv.write("Song ID, Variance, Mean Rating, Score, Num Users\n")
-            for results_dict in sorted_results:
+            for index, results_dict in enumerate(sorted_results):
                 # Get values from result dict
                 song = results_dict[SONG_ID]
                 variance = results_dict[VARIANCE]
@@ -173,7 +177,8 @@ class ArtistVarianceCalculator:
                 # Map song id to details and write to file
                 sid = self.ids_to_sids_map[song]
                 artist, song_name = self.sids_to_details_map[sid]
-                song_details.write("{} <SEP> {}\n".format(song_name, artist))
+                rating = self.scale_rating(200 - index)
+                song_details.write("{} <SEP> {} <SEP> {} <SEP> {}\n".format(song_name, artist, rating, num_users))
 
         # Get 5 most played from top 10
         tup = sorted(sorted_results[:20], key=lambda x: x[VARIANCE], reverse=False)

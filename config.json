@@ -9,7 +9,8 @@
   "song_data": {
     "base": "Data/Song_Data",
     "sids_to_ids_map": "sids_to_ids_map",
-    "sid_to_details_map": "sids_to_details_map"
+    "sid_to_details_map": "sids_to_details_map",
+    "song_to_uri_map": "song_to_uri_map"
   },
   "user_data": {
     "base": "Data/User_Data",
@@ -33,8 +34,14 @@
     "top_users_file": "top_users.csv",
     "file_formats": {
       "top_artists": "{}_top_artists.csv",
-      "artists": "{}_artists.csv"
+      "artists": "{}_artists.csv",
+      "songs": "{}_songs.csv"
     }
+  },
+  "database_data": {
+    "base": "Data/DB_Data/",
+    "input_data": "ratings.csv",
+    "nym_data": "nyms.csv"
   },
   "evaluation_data": {
     "base": "Data/Evaluation_Data",

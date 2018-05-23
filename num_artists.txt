@@ -1,0 +1,28 @@
+Processing Nym 9
+Average Num Artists: 57.6
+Processing Nym 4
+Average Num Artists: 72.4
+Processing Nym 5
+Average Num Artists: 66.8
+Processing Nym 3
+Average Num Artists: 66.2
+Processing Nym 12
+Average Num Artists: 97.6
+Processing Nym 8
+Average Num Artists: 166.0
+Processing Nym 2
+Average Num Artists: 76.6
+Processing Nym 6
+Average Num Artists: 66.6
+Processing Nym 10
+Average Num Artists: 73.8
+Processing Nym 7
+Average Num Artists: 94.8
+Processing Nym 14
+Average Num Artists: 123.4
+Processing Nym 13
+Average Num Artists: 49.2
+Processing Nym 1
+Average Num Artists: 66.2
+Processing Nym 0
+Average Num Artists: 199.6
