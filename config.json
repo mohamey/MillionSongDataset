@@ -19,7 +19,8 @@
     "user_to_row_map": "user_to_row_map",
     "user_total_play_counts_map": "user_total_play_counts_map",
     "user_max_play_counts_map": "user_max_play_counts_map",
-    "user_ratings_map": "user_ratings_map"
+    "user_ratings_map": "user_ratings_map",
+    "top_users_dir": "Top_Users/"
   },
   "nym_data": {
     "base": "Data/Nym_Data/",
@@ -29,6 +30,7 @@
     "unique_artists_dir": "Unique_Artists/",
     "nym_variance_dir": "Nym_Song_Variances/",
     "nym_users_map": "nym_users_map",
+    "top_users_file": "top_users.csv",
     "file_formats": {
       "top_artists": "{}_top_artists.csv",
       "artists": "{}_artists.csv"

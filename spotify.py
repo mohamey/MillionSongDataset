@@ -1,6 +1,5 @@
 #! /usr/bin/python3
 
-from json import dumps
 from os import environ
 import spotipy
 import spotipy.util as util
@@ -34,6 +33,7 @@ class SpotifyWrapper:
         self.spotify = spotipy.Spotify(auth=token)
 
     def get_artist_uris(self, artists):
+        print(artists)
         return [self.get_artist_uri(artist) for artist in artists]
 
     def get_artist_uri(self, artist):
@@ -67,6 +67,7 @@ class SpotifyWrapper:
 
         artist_uris = [ar for ar in artist_uris if ar]
         seed_uris = artist_uris[:5]
+        print(seed_uris)
 
         recommended_artists = set()
         while len(recommended_artists) < num_artists:
@@ -90,6 +91,7 @@ class SpotifyWrapper:
                     break
                 elif len(recommended_artists) == num_artists / 2:
                     seed_uris = artist_uris[-5:]
+                    print(seed_uris)
                     break
 
         return recommended_artists

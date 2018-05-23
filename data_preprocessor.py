@@ -7,6 +7,7 @@ from DataPreprocessor.normalize_play_counts import SongRatingNormalizer
 from DataPreprocessor.create_blc_input import SparseMatGenerator
 from DataPreprocessor.filter_sparse_songs import SparseSongFilter
 from DataPreprocessor.build_song_dict import SongDictBuilder
+from DataPreprocessor.get_top_user_artists import TopUserBuilder
 
 config = load(open("config.json"))
 
@@ -17,6 +18,7 @@ parser.add_argument("--normalize_ratings", help="Normalize play counts for each 
 parser.add_argument("--gen_matrix", help="Generate a sparse matrix at ./blc_input", action="store_true")
 parser.add_argument("--filter_sparse_songs", help="Filter Sparse Songs (cols)", action="store_true")
 parser.add_argument("--build_song_dict", help="Generates a dict of song ids to (artist, song) tuples", action="store_true")
+parser.add_argument("--build_top_users", help="Writes to file the top songs for the top users in the Dataset", action="store_true")
 parser.add_argument("--all", help="Do all of the above", action="store_true")
 args = parser.parse_args()
 
@@ -64,3 +66,11 @@ if args.build_song_dict or args.all:
     song_dict_builder.load_track_list()
     song_dict_builder.write_song_details_to_file()
     print("Done")
+
+if args.build_top_users or args.all:
+    # Build the top users for dataset
+    print("Outputting top users")
+    top_user_builder = TopUserBuilder(config)
+    top_user_builder.load_data()
+    top_user_builder.get_top_songs()
+    top_user_builder.dump_top_users()

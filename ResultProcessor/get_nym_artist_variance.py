@@ -109,36 +109,36 @@ class ArtistVarianceCalculator:
             }
 
     def weight_variances(self, metrics_dict):
-            # Build a weighted variance for each song
-            normalized_max_users = metrics_dict[MAX_NUM_USERS] - metrics_dict[MIN_NUM_USERS]
-            variance_range = metrics_dict[VARIANCE_RANGE]
-            raw_metrics = metrics_dict[RAW_METRICS]
+        # Build a weighted variance for each song
+        normalized_max_users = metrics_dict[MAX_NUM_USERS] - metrics_dict[MIN_NUM_USERS]
+        variance_range = metrics_dict[VARIANCE_RANGE]
+        raw_metrics = metrics_dict[RAW_METRICS]
 
-            results_list = []
+        results_list = []
 
-            for song, song_metrics in raw_metrics.items():
-                # Normalize number of users for song
-                scaled_num_users = song_metrics[USER_COUNT] - metrics_dict[MIN_NUM_USERS]
+        for song, song_metrics in raw_metrics.items():
+            # Normalize number of users for song
+            scaled_num_users = song_metrics[USER_COUNT] - metrics_dict[MIN_NUM_USERS]
 
-                normalized_num_users = 0
-                if scaled_num_users != normalized_max_users:
-                    normalized_num_users = scaled_num_users / normalized_max_users
+            normalized_num_users = 0
+            if scaled_num_users != normalized_max_users:
+                normalized_num_users = scaled_num_users / normalized_max_users
 
-                # calculate the penalty and weighted_variance for the song
-                penalty = variance_range * (1 - normalized_num_users)
-                weighted_penalty = penalty * 0.1
+            # calculate the penalty and weighted_variance for the song
+            penalty = variance_range * (1 - normalized_num_users)
+            weighted_penalty = penalty * 0.1
 
-                weighted_variance = song_metrics[VARIANCE] + weighted_penalty
+            weighted_variance = song_metrics[VARIANCE] + weighted_penalty
 
-                results_list.append({
-                    SONG_ID: song,
-                    VARIANCE: weighted_variance,
-                    MEAN: song_metrics[MEAN],
-                    SCORE: song_metrics[MEAN] - weighted_variance,
-                    USER_COUNT: song_metrics[USER_COUNT]
-                })
+            results_list.append({
+                SONG_ID: song,
+                VARIANCE: weighted_variance,
+                MEAN: song_metrics[MEAN],
+                SCORE: song_metrics[MEAN] - weighted_variance,
+                USER_COUNT: song_metrics[USER_COUNT]
+            })
 
-            return results_list
+        return results_list
 
     # String formatting for artists, reduce collaborations to single artist
     def format_artist(self, artist):

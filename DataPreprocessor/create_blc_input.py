@@ -63,6 +63,15 @@ class SparseMatGenerator:
 
             print("Done")
 
+    def dump_top_users(self):
+        top_users = self.sorted_users[:10]
+        for user in top_users:
+            songs = sorted(self.user_songs_map[user], key=lambda x: x[1], reverse=True)[:500]
+
+            # Get song artists
+
+
+
     def write_user_data(self):
         print("Writing user row map to pickle")
         with open(self.user_row_map_path, 'wb') as out:

@@ -23,7 +23,7 @@ class TrainTripletParser:
                 if not user in self.user_to_id_dict:
                     id = len(self.user_to_id_dict)
                     self.user_to_id_dict[user] = id
-                    self.user_songs_dict[id] = []
+                    self.user_songs_dict[user] = []
 
                 if not song_id in self.song_to_id_dict:
                     self.song_to_id_dict[song_id] = len(self.song_to_id_dict)

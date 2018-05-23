@@ -1,0 +1,13 @@
+Processing User 225988
+Average Precision: 0.21800000000000003
+Average Recall: 0.1217877094972067
+Processing User 991089
+Average Precision: 0.13
+Average Recall: 0.08783783783783784
+Processing User 679065
+Average Precision: 0.15000000000000002
+Average Recall: 0.2
+Processing User 462404
+Average Precision: 0.17800000000000002
+Average Recall: 0.06742424242424241
+Processing User 880214

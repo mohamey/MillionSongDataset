@@ -17,10 +17,12 @@ class NymRatingBuilder():
     def load_data(self):
         print("Loading in Data")
 
+        # Parse P in the form user_id, Nym
         with open(self.path_to_P_with_ids) as input_file:
             for line in input_file:
                 self.user_nym_pairs.append(map(int, line.split(",")))
 
+        # Convert list to dict
         for user, nym in self.user_nym_pairs:
             if nym not in self.nym_users_dict:
                 self.nym_users_dict[nym] = []
@@ -40,8 +42,9 @@ class NymRatingBuilder():
     def build_ratings(self):
         # For each nym, iterate it's users and tally play count for each track
         for nym, users in self.nym_users_dict.items():
-            print("Building ratings for nym {}".format(nym))
+            # print("Building ratings for nym {}".format(nym))
             nym_play_count_dict = {}
+            total_ratings = 0
             # Iterate through each user in a Nym
             for user in users:
                 # For each user get every song they listened to and their play counts
@@ -51,7 +54,9 @@ class NymRatingBuilder():
                             nym_play_count_dict[song] = 0
 
                         nym_play_count_dict[song] += play_count
+                        total_ratings += 1
 
+            print("{},".format(total_ratings))
             # Write out the total play counts of each song listened to in a nym
             filename = "{}.csv".format(nym)
             with open(path.join(self.nym_ratings_path, filename), 'w') as output:

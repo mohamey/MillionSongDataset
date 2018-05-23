@@ -36,15 +36,13 @@ with open(user_total_play_counts_map_path, 'rb') as input:
     user_total_play_counts_map = pickle.load(input)
 
 
-for nym, users in nym_users_dict.items():
-    top_users = sorted(users, key=lambda k: user_total_play_counts_map[k], reverse=True)[:5]
-    user_play_counts = [user_total_play_counts_map[user] for user in top_users]
+top_users_file_path = path.join(config['nym_data']['base'], config['nym_data']['top_users_file'])
+with open(top_users_file_path, 'w') as output:
+    for nym, users in nym_users_dict.items():
+        top_users = sorted(users, key=lambda k: user_total_play_counts_map[k], reverse=True)[:5]
+        user_play_counts = [user_total_play_counts_map[user] for user in top_users]
 
-    users_string = ",".join(map(str, top_users))
-    print("{},{}".format(nym, users_string))
-    # print("Top Users: {}".format(str(top_users)))
-    # print("User Play Counts: {}".format(str(user_play_counts)))
-
-
-
-
+        users_string = ",".join(map(str, top_users))
+        output.write("{},{}\n".format(nym, users_string))
+        # print("Top Users: {}".format(str(top_users)))
+        # print("User Play Counts: {}".format(str(user_play_counts)))
